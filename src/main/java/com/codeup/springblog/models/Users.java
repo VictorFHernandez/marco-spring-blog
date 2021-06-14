@@ -3,6 +3,7 @@ package com.codeup.springblog.models;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "users")
 public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,6 +19,20 @@ public class Users {
     private String password;
 
     public Users(){ }
+
+    public Users (String userName, String email, String password) {
+        this.userName = userName;
+        this.email = email;
+        this.password = password;
+    }
+
+    public Users (long id, String userName, String email, String password) {
+        this.id = id;
+        this.userName = userName;
+        this.email = email;
+        this.password = password;
+    }
+
 
     public long getId() {
         return id;
