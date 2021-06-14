@@ -16,7 +16,7 @@ public class Post {
     private String body;
 
     @OneToOne
-    private Users owner;
+    private User owner;
 
     public Post(){}
 
