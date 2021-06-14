@@ -1,5 +1,6 @@
 package com.codeup.springblog;
 
+import org.dom4j.rule.Mode;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +14,13 @@ import java.util.List;
 
 @Controller
 public class PostController {
+    private final PostRepository postDao;
+
+    public PostController(PostRepository postDao) {
+        this.postDao = postDao;
+    }
+
+
 
     @GetMapping("/posts")
     public String viewAllPosts(Model model){
@@ -42,4 +50,18 @@ public class PostController {
     public String CreatePost(){
         return "create a new post";
     }
+
+    @PostMapping("/posts")
+    @ResponseBody
+    public  String postEdit(){
+        return "edit posts";
+    }
+
+    @PostMapping("/post/delete")
+    @ResponseBody
+    public String postDelete(){
+        return "delete post";
+    }
+
+
 }
