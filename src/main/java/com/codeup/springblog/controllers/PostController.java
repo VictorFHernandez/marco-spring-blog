@@ -1,6 +1,7 @@
-package com.codeup.springblog;
+package com.codeup.springblog.controllers;
 
-import org.dom4j.rule.Mode;
+import com.codeup.springblog.models.Post;
+import com.codeup.springblog.daos.PostRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
