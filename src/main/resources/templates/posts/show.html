@@ -4,7 +4,8 @@
 	<title></title>
 </head>
 <body>
-<h3 th:text="${post.title}"></h3>
-<p th:text="${post.body}"></p>
+<h2 th:text="${singlePost.title}"></h2>
+<p th:text="${singlePost.body}"></p>
+<p>User email: <span th:text="${singlePost.user.email}"></span></p>
 </body>
 </html>

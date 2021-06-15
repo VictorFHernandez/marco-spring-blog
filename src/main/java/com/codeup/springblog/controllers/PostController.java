@@ -26,25 +26,21 @@ public class PostController {
 
     @GetMapping("/posts")
     public String viewAllPosts(Model model){
-        List<Post> posts = new ArrayList<>(Arrays.asList(
-                new Post("Title1", "Body1"),
-                new Post("Title2", "Body2")
-        ));
-        model.addAttribute("posts", posts);
+        model.addAttribute("posts", postDao.findAll());
         return "posts/index";
     }
 
     @GetMapping("/posts/{id}")
     public String viewOnePost(@PathVariable int id, Model model){
-        Post post = new Post("requested post", "requested body");
-        model.addAttribute("post", post);
+        model.addAttribute("singlePost", postDao.getById(id));
         return "posts/show";
     }
 
     @GetMapping("/posts/create")
     @ResponseBody
-    public String postCreation(){
-        return "display form to create a new post";
+    public String showCreateForm(Model model) {
+        model.addAttribute("ad", new Post());
+        return "ads/create";
     }
 
     @PostMapping("/posts/create")
