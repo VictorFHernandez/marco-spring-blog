@@ -33,6 +33,13 @@ public class User {
         this.password = password;
     }
 
+    public User(User copy) {
+        id = copy.id;
+        email = copy.email;
+        userName = copy.userName;
+        password = copy.password;
+    }
+
 
     public long getId() {
         return id;

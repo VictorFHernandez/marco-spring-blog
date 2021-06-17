@@ -1,4 +1,4 @@
-package com.codeup.springblog.daos;
+package com.codeup.springblog.services;
 
 import com.codeup.springblog.models.Post;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +9,8 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 @Service("mailService")
-public interface EmailService {
+public class EmailService {
+
     @Autowired
     public JavaMailSender emailSender;
 

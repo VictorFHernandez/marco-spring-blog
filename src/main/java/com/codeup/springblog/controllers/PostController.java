@@ -1,19 +1,13 @@
 package com.codeup.springblog.controllers;
 
-import com.codeup.springblog.daos.EmailService;
+import com.codeup.springblog.services.EmailService;
 import com.codeup.springblog.daos.UserRepository;
 import com.codeup.springblog.models.Post;
 import com.codeup.springblog.daos.PostRepository;
+import com.codeup.springblog.models.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class PostController {
@@ -48,9 +42,12 @@ public class PostController {
     }
 
     @PostMapping("/posts/create")
-    @ResponseBody
-    public String CreatePost(){
-        return "create a new post";
+    public String create(@ModelAttribute Post post) {
+        User user = userDao.getById(1L);
+        post.setOwner(user);
+        postDao.save(post);
+        emailService.prepareAndSend(post, "You just created a post", post.getBody());
+        return "redirect:/posts/index";
     }
 
     @PostMapping("/posts")
